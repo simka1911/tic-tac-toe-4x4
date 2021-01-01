@@ -1,0 +1,29 @@
+.field {
+  width: 25%;
+}
+
+.field__button-wrapper {
+  border: 1px solid;
+}
+
+.field__button {
+  width: 100%;
+  padding-top: 100%;
+  cursor: pointer;
+  border: none;
+  border-radius: 0;
+  background-color: white;
+}
+
+.field__button.field__button--disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+.field__button--player-1 {
+  background-color: red;
+}
+
+.field__button--player-2 {
+  background-color: blue;
+}
