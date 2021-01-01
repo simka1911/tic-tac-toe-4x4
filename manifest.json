@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Tic Tac Toe 4x4",
+  "name": "Tic Tac Toe 4x4",
   "icons": [
     {
       "src": "favicon.ico",
