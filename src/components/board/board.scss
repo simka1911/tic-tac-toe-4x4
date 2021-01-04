@@ -1,9 +1,15 @@
+@import "../../helpers/scss/media-queries.scss";
+
 .board {
-  width: 50%;
-  max-width: 800px;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   border: 2px solid;
+
+  @include mq-large() {
+    width: 50%;
+    max-width: 500px;
+  }
 }

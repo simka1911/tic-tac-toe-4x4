@@ -1,0 +1,14 @@
+$bp-large: 600px;
+$bp-small-max: $bp-large - 1; // 599px
+
+@mixin mq-small() {
+  @media (max-width: #{$bp-small-max}) {
+    @content;
+  }
+}
+
+@mixin mq-large() {
+  @media (min-width: #{$bp-large}) {
+    @content;
+  }
+}
