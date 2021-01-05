@@ -4,6 +4,7 @@ import { Board } from './components/board/Board';
 import { initialFields } from './helpers/js/initialFields';
 import { checkWinAfterPlayedMove, checkTie } from './helpers/js/winningMoves'
 import { computerMove } from './helpers/js/minimax';
+import { constants } from './helpers/js/constants';
 
 import './app.scss';
 
@@ -96,17 +97,17 @@ function App() {
       setIsGameWon(true);
       if (currentPlayer) {
         setPlayerTwoScore(playerTwoScore + 1)
-        setVictoryMessage("Computer wins!");
+        setVictoryMessage(constants.victoryMessageComputer);
       }
       else {
         setPlayerOneScore(playerOneScore + 1)
-        setVictoryMessage("User wins!");
+        setVictoryMessage(constants.victoryMessageUser);
       }
     }
     else if (checkTie(currentBoardStatePlayerTwo ^ currentBoardStatePlayerOne)) {
       setIsGameWon(true);
       setTieScore(tieScore + 1);
-      setVictoryMessage("It's a tie!");
+      setVictoryMessage(constants.victoryMessageTie);
     }
     else {
       setCurrentPlayer((currentPlayer + 1) % 2);
@@ -122,21 +123,21 @@ function App() {
   return (
     <div className="app">
       <div className="app__title">
-        Tic-Tac-Toe 4x4
+        {constants.title}
       </div>
       <AppContext.Provider value={{ currentPlayer, updatePlayersBoard, fields, updatefields, isGameWon, victoryMessage }}>
         <Board />
         <div className="app__score">
-          <PlayerScore color="red" player="0" text="User" score={playerOneScore} />
-          <PlayerScore text="Ties" score={tieScore} />
-          <PlayerScore color="green" player="1" text="Computer" score={playerTwoScore} />
+          <PlayerScore color="red" player="0" text={constants.user} score={playerOneScore} />
+          <PlayerScore text={constants.tie} score={tieScore} />
+          <PlayerScore color="green" player="1" text={constants.computer} score={playerTwoScore} />
         </div>
         <div className="app__restart">
           <button
             onMouseDown={ev => ev.preventDefault()}
             onClick={restartGame}
           >
-            Restart Game
+            {constants.restart}
           </button> 
         </div>
       </AppContext.Provider>
