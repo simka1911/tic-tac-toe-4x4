@@ -2,6 +2,10 @@
 
 An advanced game of Tic-Tac-Toe, played on a 4x4 board, created for Dresscode challenge.
 
+## Running the game
+
+Clone the repository and in terminal run `npm install`. After installation run `npm start` to start the game in the browser. 
+
 ## How to play
 
 You win the game when you obtain four identical symbols in one row, column, diagonal or square.
