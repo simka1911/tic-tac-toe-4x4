@@ -4,7 +4,7 @@ An advanced game of Tic-Tac-Toe, played on a 4x4 board, created for Dresscode ch
 
 ## Running the game
 
-Clone the repository and in terminal run `npm install`. After installation run `npm start` to start the game in the browser. 
+Clone the repository and in terminal run `npm install`. After installation run `npm start` to start the game in the browser. Works in any modern browser (IE not supported).
 
 ## How to play
 
