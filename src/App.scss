@@ -1,4 +1,5 @@
 @import "./helpers/scss/media-queries.scss";
+@import "./helpers/scss/color-variables.scss";
 
 .app {
   .app__title {
@@ -37,5 +38,28 @@
     flex-direction: row;
     flex-wrap: nowrap;
     margin-top: 30px;
+  }
+
+  .app__restart {
+    text-align: center;
+    margin-top: 20px;
+
+    button {
+      border: 2px solid $c-black;
+      border-radius: 0;
+      background-color: $c-white;
+      padding: 10px;
+      cursor: pointer;
+
+      @include mq-small() {
+        width: 100%;
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
+        opacity: 0.3;
+      }
+    }
   }
 }

@@ -60,12 +60,12 @@ function App() {
     if (checkForWin) {
       setIsGameWon(true);
       currentPlayer ? setPlayerTwoScore(playerTwoScore + 1) : setPlayerOneScore(playerOneScore + 1);
-      restartGame();
+      // restartGame();
     }
     else if (checkTie(currentBoardStatePlayerTwo ^ currentBoardStatePlayerOne)) {
       setIsGameWon(true);
       setTieScore(tieScore + 1);
-      restartGame();
+      // restartGame();
     }
     else {
       setCurrentPlayer((currentPlayer + 1) % 2);
@@ -98,7 +98,14 @@ function App() {
           <PlayerScore text="Ties" score={tieScore} />
           <PlayerScore color="green" player="1" text="Computer" score={playerTwoScore} />
         </div>
-        
+        <div className="app__restart">
+          <button
+            onMouseDown={ev => ev.preventDefault()}
+            onClick={restartGame}
+          >
+            Restart Game
+          </button> 
+        </div>
       </AppContext.Provider>
     </div>
   );
