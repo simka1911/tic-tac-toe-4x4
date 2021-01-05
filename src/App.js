@@ -6,7 +6,7 @@ import { checkWinAfterPlayedMove, checkTie } from './helpers/js/winningMoves'
 import { computerMove } from './helpers/js/minimax';
 import { constants } from './helpers/js/constants';
 
-import './app.scss';
+import './App.scss';
 
 export const AppContext = React.createContext({});
 
