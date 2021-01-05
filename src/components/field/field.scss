@@ -1,11 +1,12 @@
 @import "../../helpers/scss/color-variables.scss";
+@import "../../helpers/scss/media-queries.scss";
 
 .field {
   width: 25%;
 }
 
 .field__button-wrapper {
-  border: 1px solid;
+  border: 1px solid $c-black;
 }
 
 .field__button {
@@ -13,23 +14,15 @@
   width: 100%;
   padding-top: 100%;
   cursor: pointer;
+  opacity: 0;
   border: none;
   border-radius: 0;
   background-color: $c-white;
-  opacity: 0;
+  -webkit-tap-highlight-color: $c-tap-highlight-color;
 }
 
-.field__button.field__button--disabled {
-  pointer-events: none;
-  cursor: default;
-}
-
-.field__button--player-1,
-.field__button--player-1-hover:hover,
-.field__button--player-1-hover:focus,
-.field__button--player-1-hover:active {
+.field__button--player-1 {
   position: relative;
-  opacity: 0.2;
   &::before,
   &::after {
     content: "";
@@ -49,12 +42,8 @@
   }
 }
 
-.field__button--player-2,
-.field__button--player-2-hover:hover,
-.field__button--player-2-hover:focus,
-.field__button--player-2-hover:active {
+.field__button--player-2 {
   position: relative;
-  opacity: 0.2;
   &::before,
   &::after {
     content: "";
@@ -78,8 +67,23 @@
   }
 }
 
-.field__button--player-1,
-.field__button--player-2 {
-  transition: opacity 250ms linear;
+@include pointer-fine() {
+  .field__button--player-1:hover,
+  .field__button--player-1:focus,
+  .field__button--player-1:active,
+  .field__button--player-2:hover,
+  .field__button--player-2:focus,
+  .field__button--player-2:active {
+    opacity: 0.2;
+  }
+}
+
+.field__button--played {
   opacity: 1;
+  transition: opacity 250ms linear;
+}
+
+.field__button--disabled {
+  pointer-events: none;
+  cursor: default;
 }

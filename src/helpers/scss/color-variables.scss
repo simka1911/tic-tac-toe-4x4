@@ -1,5 +1,34 @@
 $c-white: #ffffff;
 $c-black: #000000;
+$c-tap-highlight-color: rgba(255, 255, 255, 0);
 
 $c-red: #ff0a0a;
 $c-green: #86ff20;
+
+%red-white-green {
+  background: rgb(255, 10, 10);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 10, 10, 1) 0%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(134, 255, 32, 1) 100%
+  );
+}
+
+%red-white {
+  background: rgb(255, 10, 10);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 10, 10, 1) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+
+%white-green {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(134, 255, 32, 1) 100%
+  );
+}

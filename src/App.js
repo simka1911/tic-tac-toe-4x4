@@ -11,21 +11,22 @@ export const AppContext = React.createContext({});
 
 function App() {
 
-  let computerTimer;
+  let computerTimer; // timer used for computer to give it some time to play field
 
-  const [playerOneScore, setPlayerOneScore] = useState(0);
-  const [playerTwoScore, setPlayerTwoScore] = useState(0);
-  const [tieScore, setTieScore] = useState(0);
+  // all states are in the root component:
+  const [playerOneScore, setPlayerOneScore] = useState(0); // total score of player 1 (user)
+  const [playerTwoScore, setPlayerTwoScore] = useState(0); // total score of player 2 (computer)
+  const [tieScore, setTieScore] = useState(0); // total number of tied games
 
-  const isFirstRun = useRef(true);
-
-  const [fields, setFields] = useState(initialFields);
-  const [currentPlayer, setCurrentPlayer] = useState(Math.round(Math.random())); // 0 -> player 1 (human), 1 -> player 2 (computer)
-  const [currentBoardStatePlayerOne, setCurrentBoardStatePlayerOne] = useState(0);
-  const [currentBoardStatePlayerTwo, setCurrentBoardStatePlayerTwo] = useState(0);
+  const [fields, setFields] = useState(initialFields); // initial fields of the board
+  const [currentPlayer, setCurrentPlayer] = useState(Math.round(Math.random())); // 0 -> player 1 (user), 1 -> player 2 (computer)
+  const [currentBoardStatePlayerOne, setCurrentBoardStatePlayerOne] = useState(0); // player 1 board (moves player 1 made on whole board)
+  const [currentBoardStatePlayerTwo, setCurrentBoardStatePlayerTwo] = useState(0); // player 2 board (moves player 2 made on whole board)
   const [lastPlayedField, setLastPlayedField] = useState(0);
   const [isGameWon, setIsGameWon] = useState(false);
   const [victoryMessage, setVictoryMessage] = useState("");
+
+  const isFirstRun = useRef(true);
 
   const restartGame = () => {
     clearTimeout(computerTimer);

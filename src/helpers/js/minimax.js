@@ -8,7 +8,7 @@ export const computerMove = (boardOne, boardTwo) => {
     return computerMoveField;
 }
 
-export const minimaxWithAlphaBetaPruning = (boardOne, boardTwo, depth, maxDepth, isComputerPlayer, alpha, beta) => {
+export const minimaxWithAlphaBetaPruning = (boardOne, boardTwo, depth, maxDepth = 4, isComputerPlayer, alpha, beta) => { // maxDepth of 4 should be enough, increasing the depth will slow down the execution
     if (checkWinBeforePlayedMove(isComputerPlayer ? boardTwo : boardOne) || maxDepth === depth) {
         return evaluate(isComputerPlayer, depth, boardOne, boardTwo);
     }
@@ -27,7 +27,7 @@ export const minimaxWithAlphaBetaPruning = (boardOne, boardTwo, depth, maxDepth,
         const newBoardTwo = isComputerPlayer ? (currentPossibleMove | boardTwo) : boardTwo;
         const returnedResult = minimaxWithAlphaBetaPruning(newBoardOne, newBoardTwo,  depth + 1, maxDepth, !isComputerPlayer, alpha, beta);
         
-        if (isComputerPlayer) {
+        if (isComputerPlayer) { // maximizing player
             if (returnedResult > bestResult) {
                 bestResult = returnedResult;
                 bestMove = currentPossibleMove;
@@ -44,7 +44,7 @@ export const minimaxWithAlphaBetaPruning = (boardOne, boardTwo, depth, maxDepth,
             }
         }
 
-        else { 
+        else { // minimizing player
             if (returnedResult < bestResult) {
                 bestResult = returnedResult;
                 bestMove = currentPossibleMove;
@@ -65,7 +65,7 @@ export const minimaxWithAlphaBetaPruning = (boardOne, boardTwo, depth, maxDepth,
     return bestResult;
 }
 
-const getPossibleMoves = (board) => { // returns all moves possible to be played
+const getPossibleMoves = (board) => { // returns all playable moves
     const possibleMoves = [];
     for (let i = 0; i < 16; i++) { 
         if ((board & Math.pow(2, i)) === 0) { 

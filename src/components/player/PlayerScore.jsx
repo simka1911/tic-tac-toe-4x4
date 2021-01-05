@@ -13,7 +13,7 @@ export function PlayerScore(props) {
             props.color === "red" && "player-score--red",
             props.color === "green" && "player-score--green",
             props.player === gameState.currentPlayer.toString() &&
-                "player-score--color")}
+                "player-score--visible-color")}
         >
             <div className="player-score__text">
                 {props.text}

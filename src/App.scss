@@ -1,15 +1,15 @@
-@import "./helpers/scss/media-queries.scss";
 @import "./helpers/scss/color-variables.scss";
+@import "./helpers/scss/media-queries.scss";
 
 .app {
   .app__title {
     position: relative;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    text-align: center;
     font-size: 32px;
     line-height: 32px;
     font-weight: 600;
-    text-align: center;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
 
     @include mq-large() {
       font-size: 44px;
@@ -23,13 +23,7 @@
       left: 0;
       width: 100%;
       height: 5px;
-      background: rgb(255, 10, 10);
-      background: linear-gradient(
-        90deg,
-        rgba(255, 10, 10, 1) 0%,
-        rgba(255, 255, 255, 1) 50%,
-        rgba(134, 255, 32, 1) 100%
-      );
+      @extend %red-white-green;
     }
   }
 
@@ -41,27 +35,29 @@
   }
 
   .app__restart {
-    text-align: center;
     margin-top: 20px;
+    text-align: center;
 
     button {
-      border: 2px solid $c-black;
-      border-radius: 0;
-      background-color: $c-white;
       padding: 10px;
       font-size: 16px;
       cursor: pointer;
+      border: 2px solid $c-black;
+      border-radius: 0;
+      background-color: $c-white;
       transition: opacity 200ms linear;
 
       @include mq-small() {
         width: 100%;
       }
 
-      &:hover,
-      &:focus,
-      &:active {
-        opacity: 0.3;
-        transition: opacity 200ms linear;
+      @include pointer-fine() {
+        &:hover,
+        &:focus,
+        &:active {
+          opacity: 0.3;
+          transition: opacity 200ms linear;
+        }
       }
     }
   }

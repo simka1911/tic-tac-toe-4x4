@@ -12,3 +12,9 @@ $bp-small-max: $bp-large - 1; // 599px
     @content;
   }
 }
+
+@mixin pointer-fine() {
+  @media (pointer: fine) {
+    @content;
+  }
+}
