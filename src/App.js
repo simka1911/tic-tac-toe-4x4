@@ -11,6 +11,8 @@ export const AppContext = React.createContext({});
 
 function App() {
 
+  let computerTimer;
+
   const [playerOneScore, setPlayerOneScore] = useState(0);
   const [playerTwoScore, setPlayerTwoScore] = useState(0);
   const [tieScore, setTieScore] = useState(0);
@@ -26,6 +28,7 @@ function App() {
   const [victoryMessage, setVictoryMessage] = useState("");
 
   const restartGame = () => {
+    clearTimeout(computerTimer);
     setVictoryMessage("");
     setFields(initialFields);
     setLastPlayedField(0);
@@ -59,13 +62,15 @@ function App() {
   }
 
   const computerPlay = () => {
-    const computerMoveField = computerMove(currentBoardStatePlayerOne, currentBoardStatePlayerTwo);
+    computerTimer = setTimeout(() => {
+      const computerMoveField = computerMove(currentBoardStatePlayerOne, currentBoardStatePlayerTwo);
     for (let i = 0; i < 16; i++) { 
       if (Math.pow(2, i) === computerMoveField) { 
         updatefields(i, { isPlayed: true, playedBy: currentPlayer });
         updatePlayersBoard(computerMoveField);
       }
     }
+    }, Math.floor(Math.random() * (1000 - 500 + 1) + 500));
   }
 
   const setRandomPlayer = () => { 
