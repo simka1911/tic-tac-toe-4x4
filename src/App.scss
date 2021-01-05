@@ -49,7 +49,9 @@
       border-radius: 0;
       background-color: $c-white;
       padding: 10px;
+      font-size: 16px;
       cursor: pointer;
+      transition: opacity 200ms linear;
 
       @include mq-small() {
         width: 100%;
@@ -59,6 +61,7 @@
       &:focus,
       &:active {
         opacity: 0.3;
+        transition: opacity 200ms linear;
       }
     }
   }

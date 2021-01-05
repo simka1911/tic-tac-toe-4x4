@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Field } from '../field/Field';
 import { AppContext } from '../../App';
+import classnames from 'classnames';
 
 import './board.scss';
 
@@ -14,7 +15,12 @@ export function Board() {
 
     return (
         <div className="board">
-            {fields}
+            <div className={classnames("board__fields", gameState.isGameWon && "board__fields--opacity")}>
+                {fields}
+            </div>
+            <div className={classnames("board__message", gameState.victoryMessage && "board__message--opacity")}>
+                {gameState.victoryMessage}
+            </div>
         </div>
     );
 }

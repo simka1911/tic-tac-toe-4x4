@@ -1,18 +1,19 @@
 import { checkWinBeforePlayedMove, evaluateBoard } from './winningMoves';
 
-let computerMoveField = 0;
+let computerMoveField = 0; // field which will be chosen by computer to be played
 
 export const computerMove = (boardOne, boardTwo) => {
-    const board = boardOne | boardTwo;
     computerMoveField = 0;
-    minimaxWithAlphaBetaPruning(board, boardOne, boardTwo, 0, 4, true, -Infinity, Infinity);
-    return computerMoveField || 0;
+    minimaxWithAlphaBetaPruning(boardOne, boardTwo, 0, 4, true, -Infinity, Infinity);
+    return computerMoveField;
 }
 
-export const minimaxWithAlphaBetaPruning = (board, boardOne, boardTwo, depth, maxDepth, isComputerPlayer, alpha, beta) => {
+export const minimaxWithAlphaBetaPruning = (boardOne, boardTwo, depth, maxDepth, isComputerPlayer, alpha, beta) => {
     if (checkWinBeforePlayedMove(isComputerPlayer ? boardTwo : boardOne) || maxDepth === depth) {
-        return evaluate(isComputerPlayer, depth, null, boardOne, boardTwo);
+        return evaluate(isComputerPlayer, depth, boardOne, boardTwo);
     }
+
+    const board = boardOne | boardTwo;
 
     let bestMove = null;
     let bestResult = isComputerPlayer ? -Infinity : +Infinity;
@@ -22,11 +23,9 @@ export const minimaxWithAlphaBetaPruning = (board, boardOne, boardTwo, depth, ma
     if (!possibleMoves.length) return 0;
 
     for (let currentPossibleMove of possibleMoves) {
-        
-        const newBoard = (currentPossibleMove | board);
         const newBoardOne = isComputerPlayer ? boardOne : (currentPossibleMove | boardOne);
         const newBoardTwo = isComputerPlayer ? (currentPossibleMove | boardTwo) : boardTwo;
-        const returnedResult = minimaxWithAlphaBetaPruning(newBoard, newBoardOne, newBoardTwo,  depth + 1, maxDepth, !isComputerPlayer, alpha, beta);
+        const returnedResult = minimaxWithAlphaBetaPruning(newBoardOne, newBoardTwo,  depth + 1, maxDepth, !isComputerPlayer, alpha, beta);
         
         if (isComputerPlayer) {
             if (returnedResult > bestResult) {
@@ -60,14 +59,13 @@ export const minimaxWithAlphaBetaPruning = (board, boardOne, boardTwo, depth, ma
                 bestResult = beta;
                 break;
             }
-            
         }
     };
-    
+
     return bestResult;
 }
 
-const getPossibleMoves = (board) => {
+const getPossibleMoves = (board) => { // returns all moves possible to be played
     const possibleMoves = [];
     for (let i = 0; i < 16; i++) { 
         if ((board & Math.pow(2, i)) === 0) { 
@@ -77,7 +75,7 @@ const getPossibleMoves = (board) => {
     return possibleMoves;
 }
 
-const evaluate = (isComputerPlayer, depth, move, boardOne, boardTwo) => {
+const evaluate = (isComputerPlayer, depth, boardOne, boardTwo) => { // evaluate board depending on current player (maximizing or minimizing)
     if (isComputerPlayer) {
         return evaluateBoard(boardTwo, boardOne) - depth;
     }
